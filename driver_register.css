@@ -1,0 +1,166 @@
+body {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+        url('https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1950&q=80');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #004080;
+    padding: 15px 50px;
+    color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    color: #ffcc00;
+}
+
+.register-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    text-align: center;
+    padding: 20px;
+}
+
+.register-box {
+    padding: 40px 30px;
+    border-radius: 10px;
+    width: 650px;
+    max-width: 95vw;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+}
+
+.register-box h2 {
+    margin-bottom: 24px;
+    font-size: 1.7rem;
+}
+
+.register-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.form-group.full-width {
+    width: 100%;
+}
+
+.form-group label {
+    color: #ffcc00;
+    font-weight: 500;
+    margin-bottom: 8px;
+    font-size: 1rem;
+}
+
+.register-box input,
+.register-box select,
+.register-box textarea {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    height: 45px;
+    font-family: inherit;
+    background-color: white;
+    color: #333;
+}
+
+.register-box textarea {
+    height: 80px;
+    resize: vertical;
+    padding-top: 12px;
+}
+
+.register-box button {
+    width: 100%;
+    padding: 12px;
+    background-color: #ffcc00;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    color: #000;
+    transition: background 0.3s;
+    margin-top: 10px;
+}
+
+.register-box button:hover {
+    background-color: #e6b800;
+}
+
+.register-box .back-link {
+    margin-top: 18px;
+}
+
+.register-box .back-link a {
+    color: #ffcc00;
+    text-decoration: none;
+}
+
+.register-box .back-link a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #004080;
+    color: white;
+}
+
+/* Responsive design */
+@media (max-width: 700px) {
+    .register-box {
+        width: 95vw;
+        padding: 30px 20px;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 20px;
+    }
+}

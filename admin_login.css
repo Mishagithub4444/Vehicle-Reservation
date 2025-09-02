@@ -1,0 +1,143 @@
+body {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+        url('https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1950&q=80');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #004080;
+    padding: 15px 50px;
+    color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    color: #ffcc00;
+}
+
+.login-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85vh;
+    text-align: center;
+}
+
+.login-box {
+    padding: 40px 30px;
+    border-radius: 10px;
+    width: 370px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+}
+
+.login-box h2 {
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+}
+
+.login-box form,
+.login-box .input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-group {
+    width: 100%;
+    margin-bottom: 18px;
+}
+
+.login-box input[type="text"],
+.login-box input[type="password"],
+.login-box input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    height: 45px;
+    font-family: inherit;
+    background-color: white;
+    color: #333;
+    margin-bottom: 18px;
+}
+
+/* Remove browser default email icon for consistency */
+input[type="email"]::-webkit-input-decoration,
+input[type="email"]::-webkit-input-placeholder,
+input[type="email"]::-webkit-contacts-auto-fill-button,
+input[type="email"]::-webkit-credentials-auto-fill-button {
+    display: none !important;
+}
+
+input[type="email"]::-ms-clear {
+    display: none;
+}
+
+input[type="email"]::-ms-reveal {
+    display: none;
+}
+
+.login-box button {
+    width: 100%;
+    padding: 12px;
+    background-color: #ffcc00;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    color: #000;
+    transition: background 0.3s;
+}
+
+.login-box button:hover {
+    background-color: #e6b800;
+}
+
+.login-box a {
+    color: #ffcc00;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.login-box a:hover {
+    color: #fff200;
+    text-decoration: underline;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #004080;
+    color: white;
+}

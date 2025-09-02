@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Vehicle Reservation</title>
+    <link rel="stylesheet" href="./admin_login.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="admin_login.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #1abc9c 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated background elements */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: float 20s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        header {
+            background: rgba(45, 62, 80, 0.95);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #1abc9c, #3498db);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .login-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 160px);
+            padding: 40px 20px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .login-box {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 20px 20px;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            max-width: 380px;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeInUp 1s ease-out 0.3s both;
+            position: relative;
+        }
+
+        .login-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            box-shadow: 0 10px 30px rgba(231, 76, 60, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .login-icon i {
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .login-box h2 {
+            margin-bottom: 20px;
+            color: #2d3e50;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+            position: relative;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 40px 12px 16px;
+            border: 2px solid #e1e8ed;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 400;
+            background: #f8fafc;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            outline: none;
+        }
+
+        .input-group input:focus {
+            border-color: #e74c3c;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(231, 76, 60, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .input-group input[readonly] {
+            background: #e9ecef;
+            color: #6c757d;
+            cursor: not-allowed;
+            border-color: #ced4da;
+        }
+
+        .input-group input[readonly]:focus {
+            border-color: #ced4da;
+            background: #e9ecef;
+            box-shadow: none;
+            transform: none;
+        }
+
+        .input-group i {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .input-group i#togglePassword {
+            cursor: pointer;
+            color: #e74c3c;
+        }
+
+        .input-group i#togglePassword:hover {
+            color: #c0392b;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .input-group input:focus+i {
+            color: #e74c3c;
+        }
+
+        button[type="submit"] {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        button[type="submit"]::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        button[type="submit"]:hover::before {
+            left: 100%;
+        }
+
+        button[type="submit"]:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(231, 76, 60, 0.4);
+        }
+
+        button[type="submit"]:active {
+            transform: translateY(-1px);
+        }
+
+        .back-section {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .back-btn {
+            color: #1abc9c;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-size: 0.9rem;
+        }
+
+        .back-btn:hover {
+            background: rgba(26, 188, 156, 0.1);
+            transform: translateY(-1px);
+        }
+
+        /* 2FA Checkbox Styling */
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: #555;
+            padding: 12px 0;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-container input[type="checkbox"] {
+            opacity: 0;
+            position: absolute;
+            cursor: pointer;
+        }
+
+        .checkmark {
+            height: 20px;
+            width: 20px;
+            background-color: #f8fafc;
+            border: 2px solid #e1e8ed;
+            border-radius: 4px;
+            margin-right: 12px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-container:hover .checkmark {
+            border-color: #e74c3c;
+            background-color: #fdf2f2;
+        }
+
+        .checkbox-container input:checked ~ .checkmark {
+            background-color: #e74c3c;
+            border-color: #e74c3c;
+        }
+
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+            left: 6px;
+            top: 2px;
+            width: 6px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        .checkbox-container input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        .checkbox-text {
+            font-weight: 500;
+            color: #2d3e50;
+        }
+
+        .checkbox-container:hover .checkbox-text {
+            color: #e74c3c;
+        }
+
+        footer {
+            background: rgba(45, 62, 80, 0.95);
+            backdrop-filter: blur(10px);
+            color: white;
+            text-align: center;
+            padding: 25px;
+            position: relative;
+            z-index: 10;
+            font-weight: 400;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            .login-box {
+                padding: 30px 20px;
+                margin: 20px;
+            }
+
+            .login-box h2 {
+                font-size: 1.4rem;
+            }
+
+            .input-group input {
+                padding: 12px 35px 12px 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.6rem;
+            }
+
+            .login-box {
+                padding: 25px 15px;
+            }
+        }
+
+        /* Loading animation */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .loading button[type="submit"] {
+            background: #ccc;
+        }
+
+        /* Success animation */
+        @keyframes success {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .success {
+            animation: success 0.3s ease-in-out;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">Vehicle Reserve</div>
+    </header>
+
+    <section class="login-section">
+        <div class="login-box">
+            <div class="login-icon">
+                <i class="fas fa-user-shield"></i>
+            </div>
+            <h2>Admin Panel</h2>
+            <form action="admin_login_process.php" method="POST" id="loginForm">
+                <div class="input-group">
+                    <label for="admin_id">Admin ID</label>
+                    <input type="text" name="admin_id" id="admin_id" placeholder="Enter your Admin ID" required>
+                    <i class="fas fa-id-badge"></i>
+                </div>
+                <div class="input-group">
+                    <label for="admin_name">Admin Name</label>
+                    <input type="text" name="admin_name" id="admin_name" placeholder="Enter your admin name" required>
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" placeholder="Enter your password" required>
+                    <i class="fas fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+                </div>
+                
+                <!-- 2FA Checkbox -->
+                <div style="margin: 15px 0; padding: 12px; border: 2px solid #e1e8ed; border-radius: 8px; background: #fdf2f2;">
+                    <label style="display: flex; align-items: center; cursor: pointer; font-size: 0.9rem; color: #2d3e50;">
+                        <input type="checkbox" name="enable_2fa" id="enable_2fa" value="1" style="margin-right: 10px; transform: scale(1.2);">
+                        <span style="font-weight: 500;">
+                            <i class="fas fa-shield-alt" style="color: #e74c3c; margin-right: 5px;"></i>
+                            Sign In With 2FA (Enhanced Security)
+                        </span>
+                    </label>
+                </div>
+                
+                <button type="submit">
+                    <i class="fas fa-sign-in-alt"></i> Sign In
+                </button>
+            </form>
+            <div class="back-section">
+                <a href="login.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Back to Login Options
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Vehicle Reservation Management System. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Password visibility toggle functionality
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const passwordField = document.getElementById('password');
+            const toggleIcon = document.getElementById('togglePassword');
+
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleIcon.classList.remove('fa-eye');
+                toggleIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                toggleIcon.classList.remove('fa-eye-slash');
+                toggleIcon.classList.add('fa-eye');
+            }
+        });
+
+        // Add form submission animation
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const loginBox = document.querySelector('.login-box');
+
+            // Add loading state
+            loginBox.classList.add('loading');
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing In...';
+
+            // Remove loading state after a short delay (for demonstration)
+            setTimeout(() => {
+                loginBox.classList.remove('loading');
+                loginBox.classList.add('success');
+            }, 1000);
+        });
+
+        // Add input focus animations
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'translateX(5px)';
+            });
+
+            input.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'translateX(0)';
+            });
+        });
+    </script>
+</body>
+
+</html>
